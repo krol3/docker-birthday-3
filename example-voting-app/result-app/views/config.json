@@ -1,7 +1,7 @@
 {
-  "name":"Gordon",
-  "twitter":"@docker",
-  "location":"San Francisco, CA, USA",
-  "repo":["example/votingapp_voting-app","example/votingapp_result-app"],
-  "vote":"Cat"
+  "name":"Carol Guival",
+  "twitter":"@smkrol",
+  "location":"Sao Paulo, SP, Brasil",
+  "repo":["krol/votingapp_voting-app","krol/votingapp_result-app"],
+  "vote":"Python"
 }

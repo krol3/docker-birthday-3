@@ -32,3 +32,21 @@ docker run --name static-site-2 -e AUTHOR="Carol Guival" -d -p 8888:80 seqvence/
 docker stop static-site static-site-2
 docker rm static-site static-site-2
 
+##run the flask-app
+docker build -t krol/myfirstapp .
+docker run -p 8888:5000 --name myfirstapp krol/myfirstapp
+docker stop myfirstapp
+docker rm myfirstapp
+
+docker-compose up -d
+
+docker build --no-cache -t <YOUR_DOCKER_ID>/votingapp_voting-app .
+docker build --no-cache -t krol/votingapp_voting-app .
+docker build --no-cache -t krol/votingapp_result-app .
+
+docker push krol/votingapp_voting-app
+docker push krol/votingapp_result-app
+
+docker ps -a | grep votingapp_result-app
+
+docker logs -f 1e3e71900b7c
