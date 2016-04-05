@@ -50,3 +50,5 @@ docker push krol/votingapp_result-app
 docker ps -a | grep votingapp_result-app
 
 docker logs -f 1e3e71900b7c
+
+570341acdbfe43020220e060
