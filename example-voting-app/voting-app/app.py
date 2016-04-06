@@ -40,6 +40,30 @@ def hello():
     resp.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0';
     resp.set_cookie('voter_id', voter_id)
     return resp
+    
+@app.route("/chart", methods=['POST','GET'])
+def chart():
+    voter_id = request.cookies.get('voter_id')
+    if not voter_id:
+        voter_id = hex(random.getrandbits(64))[2:-1]
+
+    vote = None
+
+    if request.method == 'POST':
+        vote = request.form['vote']
+        data = json.dumps({'voter_id': voter_id, 'vote': vote})
+        redis.rpush('votes', data)
+
+    resp = make_response(render_template(
+        'chart.html',
+        option_a=option_a,
+        option_b=option_b,
+        hostname=hostname,
+        vote=vote,
+    ))
+    resp.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0';
+    resp.set_cookie('voter_id', voter_id)
+    return resp
 
 
 if __name__ == "__main__":
